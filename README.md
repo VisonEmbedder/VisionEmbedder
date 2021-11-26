@@ -6,8 +6,9 @@ Key-value lookup plays an important role in lots of applications among all aspec
 
 ## About this repo
 
-* `src` contains source code for `VisionEmbedder`
-* `VisionEmbedder_Theoretical Analysis` is the technical report for VisionEmbedder. We prove that the update procedure will converge in the end if $\frac{m}{n} \geq 1.756$ and the probability of update failure is $O(\frac{1}{n^2})$
+* `src` contains source code for `VisionEmbedder` in C++.
+* `FPGA` contains source code for FPGA Implementation.
+* `VisionEmbedder_Theoretical Analysis` is the technical report for VisionEmbedder. We prove that the update procedure will converge in the end if m/n >= 1.756 and the probability of update failure is O(1/n^2).
 
 ## Requirements
 

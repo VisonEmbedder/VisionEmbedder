@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <map>
 #include <cassert>
+#include <unordered_map>
 
 #define random(x) rand() % (x)
 #define next(x) ((x) + 1 == HASH_NUM ? 0 : (x) + 1)
@@ -453,7 +454,6 @@ public:
                 break;
             }
         }
-        
         return success;
     }
 };
