@@ -18,6 +18,15 @@ To address these issues, we introduce VisionEmbedder, a compact key-value embedd
 
 ## How to make
 
+### Single thread
 * `cd src`
 * `g++ demo.cpp -o demo`
 * `./demo`
+
+### Multithreading
+* `cd src/multi_thread`
+* Generate dataset for testing. Make sure the generated dataset has enough KV-pairs for testing to avoid unexpected errors.
+  * `g++ gen.cpp -o gen`
+  * `./gen dataset_size >> my_data`
+* `g++ multi_test.cpp -std=c++17 -lpthread -o multi_test`
+* `./multi_test`
