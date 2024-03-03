@@ -2,11 +2,11 @@
 
 #include <numeric>
 #include <algorithm>
-#include "dynamic_bf.h"
+#include "dynamic_bf_single.h"
 
 using namespace std;
 
-vector< pair<uint32_t, int> > data;
+vector< pair<uint32_t, int> > test_data;
 ofstream fout;
 
 int read_data(string fname){
@@ -23,7 +23,7 @@ int read_data(string fname){
     uint32_t a, b;
     while(inFile >> a >> b){
         cnt ++;
-        data.push_back(make_pair(a,b));
+        test_data.push_back(make_pair(a,b));
     }
     return cnt;
 }
@@ -31,7 +31,7 @@ int read_data(string fname){
 void test(){
     // nn = number of KV pairs
     constexpr int nn = 100000;
-    auto DBF = new DynamicBloomierFilter< (uint32_t)(nn * 1.70 * 3.0) / 3u, 8u>();
+    auto DBF = new DynamicBloomierFilter_Single< (uint32_t)(nn * 1.70 * 3.0) / 3u, 8u>();
    
     srand((int)time(0));
     srand(time(0));
@@ -41,7 +41,7 @@ void test(){
     clock_gettime(CLOCK_MONOTONIC, &dtime1);
     int t;
     for (t = 0; t < nn; t++){   
-        if(!DBF->insert_pair(data[t].first, data[t].second)){
+        if(!DBF->insert_pair(test_data[t].first, test_data[t].second)){
             cout << "Failed at key " << t << endl;
             break;
         }
@@ -57,9 +57,9 @@ void test(){
     clock_gettime(CLOCK_MONOTONIC, &dtime1);
     for(int i = 0; i < nn; i++){
         uint32_t vv;
-        DBF->queryDP(data[i].first, vv);
+        DBF->queryDP(test_data[i].first, vv);
         sum += vv;
-        if(vv != data[i].second){
+        if(vv != test_data[i].second){
             error_cnt ++ ;
         }
     }
